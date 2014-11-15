@@ -21,3 +21,18 @@ and open the template in the editor.
         </form>
     </body>
 </html>
+<?php
+if(sizeof($_GET)!=''){
+    include './controller/Usuario_Controller.php';
+    $uc = new Usuario_Controller();
+    include './model/Usuario.php';
+    $user = new Usuario();
+    
+    $user->setNome($_GET['nome']);
+    $user->setEmail($_GET['email']);
+    $user->setNascimento($_GET['nascimento']);
+    $user->setSenha($_GET['senha']);
+    $user->setSexo($_GET['sexo']);
+    
+    $uc->inserir($user);
+}
