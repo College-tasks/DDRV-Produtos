@@ -8,10 +8,16 @@ class Categoria_Produto_Controller {
         $db = new Conecta();
         $db->conecta_db() or die("Falha ao conectar a base de dados");
         $query = mysql_query("select * from categoria_produto") or die("Falha ao retornar usuarios");
+        $arr = Array();
         while ($list = mysql_fetch_array($query)) {
-            echo 'Id: ' . $list['id'] . ' Categoria: ' . $list['categoria'] . '<br>';
+            $categ = new Categoria_Produto();
+            $categ->setId($list['id']);
+            $categ->setCategoria($list['categoria']);
+            $arr[] = $categ;
         }
         mysql_close();
+
+        return $arr;
     }
 
 }

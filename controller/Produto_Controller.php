@@ -24,10 +24,20 @@ class Produto_Controller {
         $db = new Conecta();
         $db->conecta_db() or die("Falha ao conectar a base de dados");
         $query = mysql_query("select * from produto") or die("Falha ao retornar usuarios");
+        $arr = Array();
         while ($list = mysql_fetch_array($query)) {
-            echo 'Produto: ' . $list['nome'] . ' Preço: ' . $list['preco'] . '<br>';
+            $produto = new Produto();
+            $produto->setDescricao($list['descricao']);
+            $produto->setId($list['id']);
+            $produto->setIdCategoria($list['id_categoria']);
+            $produto->setIdLoja($list['id_loja']);
+            $produto->setNome($list['nome']);
+            $produto->setPreco($list['preco']);
+            $arr[] = $produto;
         }
         mysql_close();
+        
+        return $arr;
     }
 
 }

@@ -24,10 +24,21 @@ class Usuario_Controller {
         $db = new Conecta();
         $db->conecta_db() or die("Falha ao conectar a base de dados");
         $query = mysql_query("select * from usuario") or die("Falha ao retornar usuarios");
+        $arr = Array();
         while ($list = mysql_fetch_array($query)) {
-            echo 'Nome: ' . $list['nome'] . ' Email:' . $list['email'] . '<br>';
+            $usuario = new Usuario();
+            $usuario->setEmail($list['email']);
+            $usuario->setID($list['id']);
+            $usuario->setNascimento($list['nascimento']);
+            $usuario->setNome($list['nome']);
+            $usuario->setSenha($list['senha']);
+            $usuario->setSexo($list['sexo']);
+            
+            $arr[] = $usuario;
         }
         mysql_close();
+        
+        return $arr;
     }
 
 }
