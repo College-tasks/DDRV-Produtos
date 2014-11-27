@@ -20,5 +20,5 @@ $cont = Loja_Controller();
 $cont->atualizar($loja);
 
 echo 'Parabens vc atualizou';
-//fazer botao voltar
 ?>
+<input type="button" value="Voltar" onClick="alterarLoja.php"> 
