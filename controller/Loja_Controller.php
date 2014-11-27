@@ -49,16 +49,27 @@ class Loja_Controller {
         $db->conecta_db() or die("Falha ao conectar a base de dados");
         $query = mysql_query("select * from loja WHERE id = $idLoja") or die("Falha ao retornar usuarios");
 
-        $loja = new Loja();
-
         while ($list = mysql_fetch_array($query)) {
-
+            $loja = new Loja();
             $loja->setId($list['id']);
             $loja->setEmail($list['email']);
         }
         mysql_close();
 
         return $loja;
+    }
+
+    public function favoritados($idLoja) {
+        $db = new Conecta();
+        $db->conecta_db() or die("Falha ao conectar a base de dados");
+        $query = mysql_query("select p.nome as nome, count(u.id) as quantidade from loja l, produto p, produto_favorito pf, usuario u where l.id = '$idLoja' and l.id = p.id_loja and p.id = pf.id_produto and pf.id_usuario = u.id group by p.nome having count(u.id) > 0") or die("Falha ao retornar usuarios");
+        $arr = Array();
+        while ($list = mysql_fetch_array($query)) {
+            $arr['nome'] = $list['nome'];
+            $arr['quantidade'] = $list['quantidade'];
+        }
+        mysql_close();
+        return $arr;
     }
 
 }

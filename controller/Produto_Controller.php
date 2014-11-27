@@ -36,7 +36,67 @@ class Produto_Controller {
             $arr[] = $produto;
         }
         mysql_close();
-        
+
+        return $arr;
+    }
+
+    public function listarUltimos() {
+        $db = new Conecta();
+        $db->conecta_db() or die("Falha ao conectar a base de dados");
+        $query = mysql_query("select * from produto order by id desc limit 3") or die("Falha ao retornar usuarios");
+        $arr = Array();
+        while ($list = mysql_fetch_array($query)) {
+            $produto = new Produto();
+            $produto->setDescricao($list['descricao']);
+            $produto->setId($list['id']);
+            $produto->setIdCategoria($list['id_categoria']);
+            $produto->setIdLoja($list['id_loja']);
+            $produto->setNome($list['nome']);
+            $produto->setPreco($list['preco']);
+            $arr[] = $produto;
+        }
+        mysql_close();
+
+        return $arr;
+    }
+
+    public function listarCategoria($id_categoria) {
+        $db = new Conecta();
+        $db->conecta_db() or die("Falha ao conectar a base de dados");
+        $query = mysql_query("select * from produto where id_categoria = '$id_categoria'") or die("Falha ao retornar usuarios");
+        $arr = Array();
+        while ($list = mysql_fetch_array($query)) {
+            $produto = new Produto();
+            $produto->setDescricao($list['descricao']);
+            $produto->setId($list['id']);
+            $produto->setIdCategoria($list['id_categoria']);
+            $produto->setIdLoja($list['id_loja']);
+            $produto->setNome($list['nome']);
+            $produto->setPreco($list['preco']);
+            $arr[] = $produto;
+        }
+        mysql_close();
+
+        return $arr;
+    }
+
+    public function listarNome($nome) {
+        $db = new Conecta();
+        $db->conecta_db() or die("Falha ao conectar a base de dados");
+        $query = mysql_query("select * from produto where nome like '%'$nome'%'") or die("Falha ao retornar usuarios");
+        $arr = Array();
+        while ($list = mysql_fetch_array($query)) {
+            $produto = new Produto();
+            $produto->setDescricao($list['descricao']);
+            $produto->setId($list['id']);
+            $produto->setIdCategoria($list['id_categoria']);
+            $produto->setIdLoja($list['id_loja']);
+            $produto->setNome($list['nome']);
+            $produto->setPreco($list['preco']);
+            $arr[] = $produto;
+        }
+        mysql_close();
+
         return $arr;
     }
 
