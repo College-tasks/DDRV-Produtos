@@ -1,11 +1,11 @@
 <?php
-$codigo = $_GET['codigo_alter'];
-$razaosocial_alter = $_GET['rozaosocial_alter'];
-$email_alter = $_GET['email_alter'];
-$telefone_alter = $_GET['telefone_alter'];
-$endereco_alter = $_GET['endereco_alter'];
-$categoria_alter = $_GET['categoria_alter'];
-$senha_alter = $_GET['senha_alter'];
+$codigo = $_POST['codigo_alter'];
+$razaosocial_alter = $_POST['rozaosocial_alter'];
+$email_alter = $_POST['email_alter'];
+$telefone_alter = $_POST['telefone_alter'];
+$endereco_alter = $_POST['endereco_alter'];
+$categoria_alter = $_POST['categoria_alter'];
+$senha_alter = $_POST['senha_alter'];
 
 $loja= new Loja();
 $loja->setId($codigo);
@@ -22,3 +22,4 @@ $cont->atualizar($loja);
 echo 'Parabens vc atualizou';
 ?>
 <input type="button" value="Voltar" onClick="alterarLoja.php"> 
+

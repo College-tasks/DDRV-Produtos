@@ -1,10 +1,10 @@
 <?php
-$codigo = $_GET['codigo_alter'];
-$nome_alter = $_GET['nome_alter'];
-$email_alter = $_GET['email_alter'];
-$nascimento_alter = $_GET['nascimento_alter'];
-$sexo_alter = $_GET['sexo_alter'];
-$senha_alter = $_GET['senha_alter'];
+$codigo = $_POST['codigo_alter'];
+$nome_alter = $_POST['nome_alter'];
+$email_alter = $_POST['email_alter'];
+$nascimento_alter = $_POST['nascimento_alter'];
+$sexo_alter = $_POST['sexo_alter'];
+$senha_alter = $_POST['senha_alter'];
 
 $usuario= new Usuario();
 $usuario->setId($codigo);

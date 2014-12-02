@@ -1,11 +1,11 @@
 <?php
-$cod = $_GET['cod'];
+$cod = $_POST['cod'];
 require("conecta.inc");
 $cont = new Loja_Controller();
 $loja = $cont->selectById($cod);
 print("<h3>Alterando os dados da Loja:</h3><p>");
 ?>
-<form action="confirma_alteraLoja.php" method="get">
+<form action="Confirma_AlterarLoja.php" method="post">
     Código: <?php print($Id) ?>
     <input type="hidden" name="id" value="<?php print($Id) ?>">
     <br>Razão Social: <input type="text" name="razao_alter" value="<?php print($loja->getRazaoSocial()) ?>">
@@ -26,5 +26,4 @@ print("<h3>Alterando os dados da Loja:</h3><p>");
     </select>
     <p><input type="submit" value="Alterar Dados">
 </form>
-<p><a href="mostraf.php">Cancelar e voltar</a>
-
+<p><a href="mostra.php">Cancelar e voltar</a>

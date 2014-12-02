@@ -50,11 +50,11 @@ class Produto {
     }
 
     public function setIdCategoria($id_categoria) {
-        $this->descricao = $id_categoria;
+        $this->id_categoria = $id_categoria;
     }
 
     public function setIdLoja($id_loja) {
-        $this->descricao = $id_loja;
+        $this->id_loja = $id_loja;
     }
 
 }

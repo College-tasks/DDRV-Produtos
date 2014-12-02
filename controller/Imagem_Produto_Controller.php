@@ -1,6 +1,6 @@
 <?php
 
-require '../DDRV-Produtos/Conecta.php';
+require './Conecta.php';
 
 class Imagem_Produto_Controller {
 

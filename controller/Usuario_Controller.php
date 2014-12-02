@@ -1,21 +1,21 @@
 <?php
 
-require '../DDRV-Produtos/Conecta.php';
+require './Conecta.php';
 
 class Usuario_Controller {
 
-    public function inserir($user) {
+   public function inserir($user) {
         $db = new Conecta();
         $db->conecta_db() or die("Falha ao conectar a base de dados");
         mysql_query("insert into usuario(nome, email, senha, nascimento, sexo)"
-                        . "values ('$user->nome','$user->email','$user->senha','$user->nascimento','$user->sexo');") or die("Erro ao inserir usuario");
+                        . "values ('$user->nome','$user->email','$user->senha',NULL,NULL);") or die("Erro ao inserir usuario");
         mysql_close();
     }
 
     public function atualizar($user) {
         $db = new Conecta();
         $db->conecta_db() or die("Falha ao conectar a base de dados");
-        mysql_query("update usuario set nome='$user->nome', email='$user->email', senha='$user->senha', nascimento='$user->nascimento', sexo='$user->sexo' where id=$user->id;")
+        mysql_query("update Usuario set Nome='$user->nome', Email='$user->email', Senha='$user->senha', Nascimento='$user->nascimento', sexo='$user->sexo' where id=$user->id;")
                 or die("Erro ao atualizar usuario");
         mysql_close();
     }
@@ -27,12 +27,12 @@ class Usuario_Controller {
         $arr = Array();
         while ($list = mysql_fetch_array($query)) {
             $usuario = new Usuario();
-            $usuario->setEmail($list['email']);
-            $usuario->setID($list['id']);
-            $usuario->setNascimento($list['nascimento']);
-            $usuario->setNome($list['nome']);
-            $usuario->setSenha($list['senha']);
-            $usuario->setSexo($list['sexo']);
+            $usuario->setEmail($list['Email']);
+            $usuario->setID($list['Id']);
+            $usuario->setNascimento($list['Nascimento']);
+            $usuario->setNome($list['Nome']);
+            $usuario->setSenha($list['Senha']);
+            $usuario->setSexo($list['Sexo']);
             
             $arr[] = $usuario;
         }
@@ -40,5 +40,16 @@ class Usuario_Controller {
         
         return $arr;
     }
-
+     public function logar($email, $senha) {
+        $db = new Conecta();
+        $db->conecta_db() or die("Falha ao retornar dados");
+        $query = mysql_query("select * from usuario where email=$email and senha=$senha") or die("select * from usuario where email=$email and senha=$senha");
+        $num_rows = mysql_num_rows($query);
+        if($num_rows > 0){
+            return TRUE;
+        } else{
+            return FALSE;
+        }
+        mysql_close();
+    }
 }
