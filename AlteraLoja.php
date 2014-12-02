@@ -1,8 +1,13 @@
 <?php
-$cod = $_POST['cod'];
-require("conecta.inc");
+
+require("conecta.php");
+include('Sessao.php');
+include 'model/Loja.php';
+include 'controller/Loja_Controller.php';
+
 $cont = new Loja_Controller();
-$loja = $cont->selectById($cod);
+$loja = $cont->selectById($_SESSION['user']);
+
 print("<h3>Alterando os dados da Loja:</h3><p>");
 ?>
 <form action="Confirma_AlterarLoja.php" method="post">

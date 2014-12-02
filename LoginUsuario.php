@@ -9,7 +9,6 @@
     </form>
     
     <?php
-    
      if (sizeof($_POST) != '') {
         include 'controller/Usuario_Controller.php';
         include 'model/Usuario.php';
@@ -23,7 +22,7 @@
         if ($ok) {
             session_start();
             $_SESSION['user'] = $email;
-            header("location: CadastrarUsuario.php");
+            header('location: BoasVindasUser.php');
         } else {
             header("location: http://www.google.com");
         }

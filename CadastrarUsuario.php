@@ -7,9 +7,7 @@
 
                     Nome:<input type="text" name="nome" required /><br>
                     Email:<input type="text" name="email" required placeholder="exemple@exemple.com"/><br>
-                    Senha:<input type="password" name="senha" required/><br>
-                    Data Nascimento:<input type="text" name="nascimento"/><br>
-                    Sexo:<input type="text" name="sexo"/><br>
+                    Senha:<input type="password" name="senha" required/><br>                
                     <br><br><input type="submit" value="Inserir Usuario">
                     <input type="reset" value="Reset" />
                 </td></tr>
@@ -26,10 +24,8 @@ if (sizeof($_POST) != '') {
     $user = new Usuario();
 
     $user->setNome($_POST['nome']);
-    $user->setEmail($_POST['email']);
-    $user->setNascimento($_POST['nascimento']);
+    $user->setEmail($_POST['email']);   
     $user->setSenha($_POST['senha']);
-    $user->setSexo($_POST['sexo']);
 
     $uc->inserir($user);
 }

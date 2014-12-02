@@ -1,7 +1,6 @@
 <?php
 
 require './Conecta.php';
-
 class Usuario_Controller {
 
    public function inserir($user) {
@@ -40,6 +39,19 @@ class Usuario_Controller {
         
         return $arr;
     }
+        public function selectById($idUsuario) {
+        $db = new Conecta();
+        $db->conecta_db() or die("Falha ao conectar a base de dados");
+        $query = mysql_query("select * from usuario WHERE id = $idUsuario") or die("Falha ao retornar usuarios");
+        while ($list = mysql_fetch_array($query)) {
+            $usuario = new Usuario();
+            $usuario->setId($list['id']);
+            $usuario->setEmail($list['email']);
+        }
+        mysql_close();
+        return $usuario;
+    }
+    
      public function logar($email, $senha) {
         $db = new Conecta();
         $db->conecta_db() or die("Falha ao retornar dados");
