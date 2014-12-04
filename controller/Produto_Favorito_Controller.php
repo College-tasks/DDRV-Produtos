@@ -17,5 +17,4 @@ class Produto_Favorito_Controller {
         mysql_query("delete produto_favorito where id_usuario='$favorito->id_usuario' and id_produto='$favorito->id_produto'") or die("Falha ao remover imagem");
         mysql_close();
     }
-
 }

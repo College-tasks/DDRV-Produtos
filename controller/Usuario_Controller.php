@@ -1,6 +1,7 @@
 <?php
 
 require './Conecta.php';
+
 class Usuario_Controller {
 
    public function inserir($user) {
@@ -55,7 +56,7 @@ class Usuario_Controller {
      public function logar($email, $senha) {
         $db = new Conecta();
         $db->conecta_db() or die("Falha ao retornar dados");
-        $query = mysql_query("select * from usuario where email=$email and senha=$senha") or die("select * from usuario where email=$email and senha=$senha");
+        $query = mysql_query("select * from usuario where email='$email' and senha='$senha'") or die("select * from usuario where email=$email and senha=$senha");
         $num_rows = mysql_num_rows($query);
         if($num_rows > 0){
             return TRUE;

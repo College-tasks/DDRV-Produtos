@@ -1,5 +1,6 @@
 <?php
 require './Conecta.php';
+//include 'model/Loja.php';
 class Loja_Controller {
     public function inserir($loja) {
         $db = new Conecta();
@@ -35,7 +36,7 @@ class Loja_Controller {
     public function selectById($idLoja) {
         $db = new Conecta();
         $db->conecta_db() or die("Falha ao conectar a base de dados");
-        $query = mysql_query("select * from loja WHERE id = $idLoja") or die("Falha ao retornar usuarios");
+        $query = mysql_query("select * from loja WHERE id = $idLoja") or die("Falha ao retornar loja");
         while ($list = mysql_fetch_array($query)) {
             $loja = new Loja();
             $loja->setId($list['id']);
@@ -59,7 +60,7 @@ class Loja_Controller {
      public function logar($email, $senha) {
         $db = new Conecta();
         $db->conecta_db() or die("Falha ao retornar dados");
-        $query = mysql_query("select * from loja where email=$email and senha=$senha") or die("select * from loja where email=$email and senha=$senha");
+        $query = mysql_query("select * from loja where email='$email' and senha='$senha'") or die("select * from loja where email=$email and senha=$senha");
         $num_rows = mysql_num_rows($query);
         if($num_rows > 0){
             return TRUE;

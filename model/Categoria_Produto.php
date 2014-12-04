@@ -20,5 +20,4 @@ class Categoria_Produto {
     public function setCategoria($categoria) {
         $this->categoria = $categoria;
     }
-
 }

@@ -23,7 +23,7 @@
         if ($ok) {
             session_start();
             $_SESSION['user'] = $email;
-            header("location: CadastrarLoja.php");
+            header("location: BoasVindasUser.php");
         } else {
             header("location: http://www.google.com");
         }

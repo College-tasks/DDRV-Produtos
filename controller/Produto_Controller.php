@@ -104,9 +104,7 @@ class Produto_Controller {
         $db->conecta_db() or die("Falha ao conectar a base de dados");
         $query = mysql_query("select * from produto where id = '$id'") or die("Falha ao retornar usuarios");
         $arr = Array();
-        while ($list = mysql_fetch_array($query)) {
-            
-
+        while ($list = mysql_fetch_array($query)) {       
             
             $produto = new Produto();
             $produto->setDescricao($list['Descricao']);

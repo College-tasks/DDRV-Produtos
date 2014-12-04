@@ -2,7 +2,7 @@
 
     session_start(); 
  
-    if($_SESSION['email']!='')
+    if($_SESSION['user']!='')
     {
         // Se nao tiver logado
         // Entao Redirecionar para Página de Logina
